@@ -14,6 +14,15 @@ const clear = () => {
   amountInput.value = "";
 };
 
+async function presentToast() {
+  const toast = document.createElement("ion-toast");
+  toast.message = "Expense is added!";
+  toast.duration = 2000;
+
+  document.body.appendChild(toast);
+  return toast.present();
+}
+
 async function presentAlert(props) {
   const alert = document.createElement("ion-alert");
   // alert.cssClass = 'my-custom-class';
@@ -65,6 +74,8 @@ const confirmBtnSub = rxjs.fromEvent(confirmBtn, "click").subscribe((event) => {
 
   totalExpenses += +enteredAmount;
   totalExpensesOutput.textContent = totalExpenses;
+
+  presentToast();
 
   clear();
 });
